@@ -21,6 +21,18 @@ h1 {
   margin-bottom: 0;
 }
 
+@media (max-width:700px) {
+	h1 {
+		font-size: 8rem;
+	}
+}
+
+@media (max-width:400px) {
+	h1 {
+		font-size: 6rem;
+	}
+}
+
 .button {
 	width: 200px;
 	margin: 0 auto;
@@ -44,8 +56,8 @@ button {
 }
 
 .game {
-  width:600px;
-  height:400px;
+  max-width:600px;
+  height:600px;
   display:flex;
   flex-wrap:wrap;
   margin:0 auto;
@@ -55,6 +67,22 @@ button {
   flex: 1 0 33.33%;
   overflow: hidden;
   position: relative;
+}
+
+@media (max-width:600px) {
+	.hole {
+		flex: 0 50%;
+	}
+	/*.hole2 {
+		flex: 1 30%;
+	}*/
+
+
+	.game {
+    > div {
+        flex: 1;
+    }
+}
 }
 
 .hole:after {
@@ -71,7 +99,7 @@ button {
 
 .mole {
   background:url('mole.svg') bottom center no-repeat;
-  background-size:60%;
+  background-size:50%;
   position: absolute;
   top: 100%;
   width: 100%;

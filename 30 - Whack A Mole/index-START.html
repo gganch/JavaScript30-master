@@ -10,7 +10,7 @@
 
   <h1>Whack-a-mole! <span class="score">0</span></h1>
   <div class="button">
-	  <button onClick="startGame()">Start!</button>
+	  <button id="button" onClick="startGame()">Start!</button>
   </div>
 
   <div class="game">
@@ -38,6 +38,11 @@
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  const button = document.querySelector('#button');
+  // const animate = null;
+  var timeT;
+  var timeout;
+
   let lastHole;
   let timeUp = false;
   let score = 0;
@@ -62,18 +67,41 @@
 	const hole = randomHole(holes);
 	console.log(time, hole);
 	hole.classList.add('up');
-	setTimeout(() => {
+	timeT = setTimeout(() => {
 		hole.classList.remove('up');
 		if(!timeUp) peep();
 	}, time);
   }
 
   function startGame() {
-	  scoreBoard.textContent = 0;
-	  timeup = false;
-	  score = 0;
-	  peep();
-	  setTimeout(() => timeUp = true, 10000)
+	const elem = document.getElementById('button');
+
+	//   scoreBoard.textContent = 0;
+	//   timeup = false;
+	//   score = 0;
+	//   peep();
+	//   setTimeout(() => timeUp = true, 10000)
+	if(elem.innerText=="Stop"){
+		button.addEventListener('click', stop());
+	}
+	change();
+  }
+
+  function change() {
+	 scoreBoard.textContent = 0;
+ 	 timeup = false;
+ 	 score = 0;
+ 	 peep();
+ 	 timeout = setTimeout(() => timeUp = true, 10000);
+	 var elem = document.getElementById('button');
+	//  if(elem.innerText=="Stop") elem.innerText = "Start!";
+	//  else elem.innerText = "Stop";
+  }
+
+  function stop(){
+	clearTimeout(timeout);
+	console.log("stop");
+	// animate = null;
   }
 
   function bonk(e) {
